@@ -14,6 +14,12 @@
         {
             width: 72px;
         }
+        .style3
+        {
+            width: 72px;
+            font-weight: bold;
+            color: #00CC00;
+        }
     </style>
 </head>
 <body>
@@ -22,7 +28,7 @@
     
         <table class="style1">
             <tr>
-                <td class="style2">
+                <td class="style3">
     
         To:</td>
                 <td>
@@ -30,7 +36,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
         Subject:
         </td>
                 <td>
@@ -38,7 +44,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
         Body:
         </td>
                 <td>
