@@ -69,7 +69,21 @@
         </table>
         <br />
     
+        <br />
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+            DataKeyNames="OrgId" DataSourceID="SqlDataSource2">
+            <Columns>
+                <asp:BoundField DataField="OrgId" HeaderText="OrgId" InsertVisible="False" 
+                    ReadOnly="True" SortExpression="OrgId" />
+                <asp:BoundField DataField="OrgName" HeaderText="OrgName" 
+                    SortExpression="OrgName" />
+            </Columns>
+        </asp:GridView>
+    
     </div>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:test %>" 
+        SelectCommand="SELECT * FROM [Organization]"></asp:SqlDataSource>
     </form>
 </body>
 </html>
