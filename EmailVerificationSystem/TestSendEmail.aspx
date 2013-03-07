@@ -70,6 +70,33 @@
         <br />
     
     </div>
+    <br />
+    <asp:Button ID="btnSelectAll" runat="server"
+        Text="Select All" onclick="btnSelectAll_Click" />
+&nbsp;<asp:Button ID="btnDeselectAll" runat="server" Text="Deselect All" 
+        Width="87px" onclick="btnDeselectAll_Click" />
+    <asp:GridView ID="Customers" runat="server" AutoGenerateColumns="False" 
+        DataSourceID="SqlDataSource1">
+        <Columns>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:CheckBox ID="EmailSelector" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="Fname" HeaderText="Fname" SortExpression="Fname" />
+            <asp:BoundField DataField="Lname" HeaderText="Lname" SortExpression="Lname" />
+            <asp:BoundField DataField="BranchName" HeaderText="BranchName" 
+                SortExpression="BranchName" />
+            <asp:BoundField DataField="Address" HeaderText="Address" 
+                SortExpression="Address" />
+        </Columns>
+    </asp:GridView>
+    <asp:Button ID="SendList" runat="server" Text="Send" onclick="SendList_Click" />
+    <br />
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:DreamToolConnectionString %>" 
+        SelectCommand="SELECT * FROM [View_CustomerBranchEmail] ORDER BY [Lname], [Fname]">
+    </asp:SqlDataSource>
     </form>
 </body>
 </html>

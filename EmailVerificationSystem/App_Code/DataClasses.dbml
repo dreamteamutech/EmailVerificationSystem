@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DreamTool" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=kimberly-pc;Initial Catalog=DreamTool;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DreamToolConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Branch" Member="Branches">
+    <Type Name="Branch">
+      <Column Name="BranchId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BranchName" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="OrgId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Branch_Customer" Member="Customers" ThisKey="BranchId" OtherKey="BranchId" Type="Customer" />
+      <Association Name="Organization_Branch" Member="Organization" ThisKey="OrgId" OtherKey="OrgId" Type="Organization" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Validation" Member="Validations">
+    <Type Name="Validation">
+      <Column Name="ValidId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DateSent" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Delivered" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Opened" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Email_Validation" Member="Email" ThisKey="EmalId" OtherKey="EmailId" Type="Email" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Fname" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="Lname" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="BranchId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_Email" Member="Emails" ThisKey="CustomerId" OtherKey="CustomerId" Type="Email" />
+      <Association Name="Branch_Customer" Member="Branch" ThisKey="BranchId" OtherKey="BranchId" Type="Branch" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Email" Member="Emails">
+    <Type Name="Email">
+      <Column Name="EmailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Email_Validation" Member="Validations" ThisKey="EmailId" OtherKey="EmalId" Type="Validation" />
+      <Association Name="Customer_Email" Member="Customer" ThisKey="CustomerId" OtherKey="CustomerId" Type="Customer" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Organization" Member="Organizations">
+    <Type Name="Organization">
+      <Column Name="OrgId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrgName" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Association Name="Organization_Branch" Member="Branches" ThisKey="OrgId" OtherKey="OrgId" Type="Branch" />
+    </Type>
+  </Table>
+  <Table Name="dbo.View_CustomerBranchEmail" Member="View_CustomerBranchEmails">
+    <Type Name="View_CustomerBranchEmail">
+      <Column Name="Fname" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="Lname" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="BranchName" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
