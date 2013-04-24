@@ -76,7 +76,7 @@
 &nbsp;<asp:Button ID="btnDeselectAll" runat="server" Text="Deselect All" 
         Width="87px" onclick="btnDeselectAll_Click" />
     <asp:GridView ID="Customers" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="SqlDataSource1">
+        DataSourceID="SqlDataSource1" AllowPaging="True">
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
